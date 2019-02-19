@@ -2,6 +2,13 @@ import cv2
 import numpy as np
 from PIL import ImageGrab
 
+'''
+
+    # This is a standalone program I used to get the color ranges for the masks
+
+'''
+
+
 rio = [640, 500, 1070, 690]
 
 cap = cv2.VideoCapture("outpy.avi")
