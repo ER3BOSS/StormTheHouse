@@ -24,7 +24,7 @@ class Ammo(threading.Thread):
         self.mask_ammo = cv2.inRange(self.ammo, self.ammo_lower, self.ammo_upper)
 
         # find contours
-        self.ammo_contours, _ = cv2.findContours(self.mask_ammo, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+        _, self.ammo_contours, _ = cv2.findContours(self.mask_ammo, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
     def stop(self):
         self._stop_event.set()
@@ -38,7 +38,7 @@ class Ammo(threading.Thread):
             self.ammo = np.array(ImageGrab.grab(bbox=self.rio_ammo))
             self.ammo = cv2.cvtColor(self.ammo, cv2.COLOR_BGR2HSV)
             self.mask_ammo = cv2.inRange(self.ammo, self.ammo_lower, self.ammo_upper)
-            self.ammo_contours, _ = cv2.findContours(self.mask_ammo, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+            _, self.ammo_contours, _ = cv2.findContours(self.mask_ammo, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
             if len(self.ammo_contours) == 0:  # if out of ammo reload (no contours of given color found)
                 win32api.keybd_event(0x20, 0, 0, 0)  # 0x20 is hex for the space key
                 time.sleep(0.25)

@@ -52,7 +52,7 @@ class Aimbot(threading.Thread):
             #cv2.imshow("mask", mask_game)
 
             # retrieve all contours found within the mask
-            contours, _ = cv2.findContours(mask_game, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+            _,      contours, _ = cv2.findContours(mask_game, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
             if contours:  # shoot all black stuff
                 for contour in contours:
                     area = cv2.contourArea(contour)

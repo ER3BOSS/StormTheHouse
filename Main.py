@@ -5,6 +5,8 @@ import threading
 # Classes
 from Ammo import Ammo
 from Aimbot import Aimbot
+import cv2
+import keyboard
 
 
 def main():
@@ -17,7 +19,7 @@ def main():
     aim_thread.start()
 
     mouse_x, mouse_y = win32api.GetCursorPos()
-    while 610 < mouse_x: # this will loop until the mouse_x gets below the threshold (610)
+    while not keyboard.is_pressed("q"): # this will loop until the mouse_x gets below the threshold (610)
         mouse_x, mouse_y = win32api.GetCursorPos()
 
     print("cursor out of bounds -> stopping ...")
